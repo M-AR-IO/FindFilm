@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Find Film</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="cari">Search</string>
+    <string name="label_cari">Search Somethings</string>
+    <string name="sedang_tayang">Now Playing</string>
+    <string name="rekomendasi">Recommendation</string>
+    <string name="tolong_tunggu">Please wait</string>
+    <string name="menampilkan_data">Showing data</string>
+    <string name="cari_film">Search any film</string>
+
+</resources>

@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.FindFilm" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary.Night</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark.Night</item>
+        <item name="colorAccent">@color/colorAccent.Night</item>
+        <item name="android:textColor">@color/white</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.FindFilm.NoActionBar" parent="">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="SearchView" parent="">
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.FindFilm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.FindFilm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>
