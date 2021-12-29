@@ -1,13 +1,12 @@
 package my.mobile.findfilm.api
 
-import my.mobile.findfilm.data.Film
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object FilmRepository {
+object Repository {
     private val api: Api
     init {
         val retrofit = Retrofit.Builder()
@@ -26,6 +25,16 @@ object FilmRepository {
             false -> onError.invoke()
         }
         override fun onFailure(call: Call<GetFilmResponse>, t: Throwable) = onError.invoke()
+    }
+    private fun callbackTV(
+        onSuccess: (hasil: GetTVResponse) -> Unit,
+        onError: () -> Unit
+    ) = object: Callback<GetTVResponse> {
+        override fun onResponse(call: Call<GetTVResponse>, response: Response<GetTVResponse>) = when (response.isSuccessful){
+            true -> response.body()?.let {onSuccess.invoke(it)} ?: run {onError.invoke()}
+            false -> onError.invoke()
+        }
+        override fun onFailure(call: Call<GetTVResponse>, t: Throwable) = onError.invoke()
     }
 
     fun getFilmPlayNow(
@@ -52,5 +61,33 @@ object FilmRepository {
     ){
         api.getFilm(page = page)
             .enqueue(callback(onSuccess,onError))
+    }
+
+    // TV
+
+    fun getTvPlayNow(
+        page: Int = 1,
+        onSuccess: (hasil: GetTVResponse) -> Unit,
+        onError: () -> Unit
+    ){
+        api.getTVPlayNow(page = page)
+            .enqueue(callbackTV(onSuccess,onError))
+    }
+    fun searchTv(
+        query: String,
+        page: Int = 1,
+        onSuccess: (hasil: GetTVResponse) -> Unit,
+        onError: () -> Unit
+    ){
+        api.searchTV(query = query,page = page)
+            .enqueue(callbackTV(onSuccess,onError))
+    }
+    fun getTv(
+        page: Int = 1,
+        onSuccess: (hasil: GetTVResponse) -> Unit,
+        onError: () -> Unit
+    ){
+        api.getTV(page = page)
+            .enqueue(callbackTV(onSuccess,onError))
     }
 }

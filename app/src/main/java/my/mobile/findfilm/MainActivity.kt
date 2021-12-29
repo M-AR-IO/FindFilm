@@ -1,19 +1,16 @@
 package my.mobile.findfilm
 
-import android.app.SearchManager
-import android.content.ComponentName
-import android.content.Context
+import android.app.Activity
+import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuItemCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import my.mobile.findfilm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+
+//        setWindowFlag(this,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,false)
+//        window.statusBarColor = resources.getColor(R.color.colorPrimary)
+
         setSupportActionBar(binding.toolbar)
 
         val navView: BottomNavigationView = binding.navView
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_tv, R.id.navigation_notifications
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -59,5 +61,14 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //        return super.onOptionsItemSelected(item)
+//    }
+//    private fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
+//        val winParams: WindowManager.LayoutParams = activity.window.attributes
+//        if (on) {
+//            winParams.flags = winParams.flags or bits
+//        } else {
+//            winParams.flags = winParams.flags and bits.inv()
+//        }
+//        window.attributes = winParams
 //    }
 }

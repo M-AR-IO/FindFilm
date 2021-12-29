@@ -7,14 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="flatwhite">#aeaeae</color>
 
     <color name="colorPrimary">#00dbdb</color>
     <color name="colorPrimaryDark">#007a7a</color>
     <color name="colorRating">#ffff00</color>
     <color name="colorAccent">#9fd3ed</color>
-    <color name="colorDark">#203539</color>
+    <color name="colorDark">#001010</color>
 
-    <color name="colorPrimary.Night">#002a2a</color>
-    <color name="colorPrimaryDark.Night">#001010</color>
-    <color name="colorAccent.Night">#56baed</color>
+    <color name="colorPrimary.Night">#203539</color>
+    <color name="colorPrimaryDark.Night">#002a2a</color>
+    <color name="colorAccent.Night">#00d0d0</color>
 </resources>

@@ -14,13 +14,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import my.mobile.findfilm.R
 import my.mobile.findfilm.api.API
-import my.mobile.findfilm.data.Film
+import my.mobile.findfilm.data.Television
 
-class FilmAdapter(
+class TvAdapter(
     val context: Context,
-    val items: List<Film>,
+    val items: List<Television>,
     val onSelectData: OnSelectData
-): RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
+): RecyclerView.Adapter<TvAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val cvFilm: CardView
         val imgCover: ImageView
@@ -38,7 +38,7 @@ class FilmAdapter(
         }
     }
     interface OnSelectData {
-        fun onSelect(film: Film)
+        fun onSelect(tv: Television)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,25 +47,25 @@ class FilmAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val film = items[position]
+        val tv = items[position]
 
-        holder.tvTitle.text = film.title
-        holder.tvRealiseDate.text = film.release_date
-        holder.tvDeskripsi.text = film.overview
+        holder.tvTitle.text = tv.name
+        holder.tvRealiseDate.text = tv.realise_date
+        holder.tvDeskripsi.text = tv.overview
         holder.ratingbar.let {
             it.numStars = 5
             it.stepSize = 0.5f
-            it.rating = film.rating/2
+            it.rating = tv.vote_average/2
         }
         Glide.with(context)
-            .load(API.URLIMAGE + film.poster_path)
+            .load(API.URLIMAGE + tv.poster_path)
             .apply(RequestOptions()
                 .placeholder(R.drawable.cover_image_default)
                 .transform(RoundedCorners(16))
             )
             .into(holder.imgCover)
         holder.cvFilm.setOnClickListener {
-            onSelectData.onSelect(film)
+            onSelectData.onSelect(tv)
         }
     }
 

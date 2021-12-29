@@ -11,7 +11,8 @@ class API {
         const val MOVIE_POPULAR = "movie/popular";
         const val MOVIE = "discover/movie";
         const val TV_PLAYNOW = "tv/on_the_air";
-        const val TV_POPULAR = "discover/tv";
+        const val TV = "discover/tv";
+        const val TV_POPULAR = "tv/popular";
         const val URLIMAGE = "https://image.tmdb.org/t/p/w780/";
         const val URLFILM = "https://www.themoviedb.org/movie/";
         const val NOTIF_DATE = "primary_release_date.gte";
