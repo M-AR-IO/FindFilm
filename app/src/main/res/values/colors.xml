@@ -13,9 +13,9 @@
     <color name="colorPrimaryDark">#007a7a</color>
     <color name="colorRating">#ffff00</color>
     <color name="colorAccent">#9fd3ed</color>
-    <color name="colorDark">#001010</color>
+    <color name="colorDark">#131c21</color>
 
-    <color name="colorPrimary.Night">#203539</color>
-    <color name="colorPrimaryDark.Night">#002a2a</color>
-    <color name="colorAccent.Night">#00d0d0</color>
+    <color name="colorPrimary.Night">#323739</color>
+    <color name="colorPrimaryDark.Night">#20262a</color>
+    <color name="colorAccent.Night">#00af9c</color>
 </resources>

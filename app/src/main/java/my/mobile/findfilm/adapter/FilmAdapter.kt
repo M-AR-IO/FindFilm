@@ -60,7 +60,7 @@ class FilmAdapter(
         Glide.with(context)
             .load(API.URLIMAGE + film.poster_path)
             .apply(RequestOptions()
-                .placeholder(R.drawable.cover_image_default)
+                .placeholder(R.drawable.ic_image)
                 .transform(RoundedCorners(16))
             )
             .into(holder.imgCover)

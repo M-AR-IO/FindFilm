@@ -10,5 +10,6 @@
     <string name="tolong_tunggu">Please wait</string>
     <string name="menampilkan_data">Showing data</string>
     <string name="cari_film">Search any film</string>
+    <string name="search_tv">Search any movie tv</string>
 
 </resources>

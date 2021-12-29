@@ -12,6 +12,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:src="@drawable/cover_image_default"
+            android:src="@drawable/ic_image"
             android:scaleType="centerInside"/>
 </androidx.cardview.widget.CardView>
