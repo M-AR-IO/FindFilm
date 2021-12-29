@@ -1,12 +1,14 @@
 package my.mobile.findfilm.adapter
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,6 +17,9 @@ import com.bumptech.glide.request.RequestOptions
 import my.mobile.findfilm.R
 import my.mobile.findfilm.api.API
 import my.mobile.findfilm.data.Film
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class FilmAdapter(
     val context: Context,
@@ -46,11 +51,14 @@ class FilmAdapter(
         return ViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val film = items[position]
 
         holder.tvTitle.text = film.title
-        holder.tvRealiseDate.text = film.release_date
+        val date = LocalDate.parse(film.release_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val unix = date.atStartOfDay(ZoneId.systemDefault())
+        holder.tvRealiseDate.text = unix.format(DateTimeFormatter.ofPattern("d MMMM yyyy"))
         holder.tvDeskripsi.text = film.overview
         holder.ratingbar.let {
             it.numStars = 5
