@@ -10,7 +10,7 @@ object Repository {
     private val api: Api
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl(API.BASE_URL)
+            .baseUrl(ApiConst.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         api = retrofit.create(Api::class.java)
@@ -35,6 +35,16 @@ object Repository {
             false -> onError.invoke()
         }
         override fun onFailure(call: Call<GetTVResponse>, t: Throwable) = onError.invoke()
+    }
+    private fun callbackTrailer(
+        onSuccess: (hasil: GetTrailerResponse) -> Unit,
+        onError: () -> Unit
+    ) = object: Callback<GetTrailerResponse> {
+        override fun onResponse(call: Call<GetTrailerResponse>, response: Response<GetTrailerResponse>) = when (response.isSuccessful){
+            true -> response.body()?.let {onSuccess.invoke(it)} ?: run {onError.invoke()}
+            false -> onError.invoke()
+        }
+        override fun onFailure(call: Call<GetTrailerResponse>, t: Throwable) = onError.invoke()
     }
 
     fun getFilmPlayNow(
@@ -89,5 +99,24 @@ object Repository {
     ){
         api.getTV(page = page)
             .enqueue(callbackTV(onSuccess,onError))
+    }
+
+    // Trailer
+
+    fun getTvTrailer(
+        id: Long,
+        onSuccess: (hasil: GetTrailerResponse) -> Unit,
+        onError: () -> Unit
+    ){
+        api.getTvTrailer(id = id)
+            .enqueue(callbackTrailer(onSuccess,onError))
+    }
+    fun getFilmTrailer(
+        id: Long,
+        onSuccess: (hasil: GetTrailerResponse) -> Unit,
+        onError: () -> Unit
+    ){
+        api.getFilmTrailer(id = id)
+            .enqueue(callbackTrailer(onSuccess,onError))
     }
 }

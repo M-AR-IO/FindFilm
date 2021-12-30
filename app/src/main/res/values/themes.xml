@@ -9,18 +9,23 @@
         <item name="android:windowBackground">@color/colorDark</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.FindFilm.NoActionBar" parent="">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
     <style name="SearchView" parent="">
         <item name="android:editTextColor">@color/white</item>
         <item name="android:textColorHint">@color/flatwhite</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="Theme.FindFilm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="Theme.FindFilm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="Theme.FindFilm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FindFilm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="BottomNavigation" parent="">
         <item name="itemIconTint">@color/flatwhite</item>
         <item name="iconTint">@color/white</item>

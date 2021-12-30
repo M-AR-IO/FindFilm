@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import my.mobile.findfilm.R
-import my.mobile.findfilm.api.API
+import my.mobile.findfilm.api.ApiConst
 import my.mobile.findfilm.data.Television
 import java.time.LocalDate
 import java.time.ZoneId
@@ -66,7 +66,7 @@ class TvAdapter(
             it.rating = tv.vote_average/2
         }
         Glide.with(context)
-            .load(API.URLIMAGE + tv.poster_path)
+            .load(ApiConst.URLIMAGE + tv.poster_path)
             .apply(RequestOptions()
                 .placeholder(R.drawable.ic_image)
                 .transform(RoundedCorners(16))

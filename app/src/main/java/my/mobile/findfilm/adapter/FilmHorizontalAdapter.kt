@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import my.mobile.findfilm.R
-import my.mobile.findfilm.api.API
+import my.mobile.findfilm.api.ApiConst
 import my.mobile.findfilm.data.Film
 
 class FilmHorizontalAdapter(
@@ -36,7 +36,7 @@ class FilmHorizontalAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val film = items[position]
         Glide.with(context)
-            .load(API.URLIMAGE + film.poster_path)
+            .load(ApiConst.URLIMAGE + film.poster_path)
             .apply(RequestOptions()
                 .placeholder(R.drawable.ic_image)
                 .transform(RoundedCorners(16))

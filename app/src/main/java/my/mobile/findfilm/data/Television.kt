@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
+import java.io.Serializable
 
 open class Television (
     @SerializedName("id") @PrimaryKey open var id: Long = 0,
@@ -15,4 +16,4 @@ open class Television (
     @SerializedName("first_air_date") @Required open var realise_date: String = "",
     @SerializedName("popularity") open var popularity: Float = 0f,
     @SerializedName("overview") @Required open var overview: String = ""
-) : RealmObject()
+) : RealmObject(), Serializable

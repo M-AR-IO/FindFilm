@@ -2,6 +2,7 @@ package my.mobile.findfilm.ui.tv
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
+import my.mobile.findfilm.DetailTvActivity
 import my.mobile.findfilm.R
 import my.mobile.findfilm.adapter.TvAdapter
 import my.mobile.findfilm.adapter.TvHorizontalAdapter
@@ -147,6 +149,8 @@ class TelevisionFragment : Fragment(), TvAdapter.OnSelectData, TvHorizontalAdapt
     }
 
     override fun onSelect(tv: Television) {
-        // Buka Film
+        val intent = Intent(context,DetailTvActivity::class.java)
+        intent.putExtra(DetailTvActivity.INTENT_EXTRA_NAME,tv)
+        startActivity(intent)
     }
 }

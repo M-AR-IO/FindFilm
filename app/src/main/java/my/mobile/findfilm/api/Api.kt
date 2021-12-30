@@ -2,59 +2,75 @@ package my.mobile.findfilm.api
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Api {
-    @GET(API.MOVIE_POPULAR)
+    @GET(ApiConst.MOVIE_POPULAR)
     fun getFilmPopuler(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1
     ): Call<GetFilmResponse>
 
-    @GET(API.SEARCH_MOVIE)
+    @GET(ApiConst.SEARCH_MOVIE)
     fun searchFilm(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1,
-        @Query(API.QUERY) query: String = ""
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1,
+        @Query(ApiConst.QUERY) query: String = ""
         ): Call<GetFilmResponse>
 
-    @GET(API.MOVIE_PLAYNOW)
+    @GET(ApiConst.MOVIE_PLAYNOW)
     fun getFilmPlayNow(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1
     ): Call<GetFilmResponse>
 
-    @GET(API.MOVIE)
+    @GET(ApiConst.MOVIE)
     fun getFilm(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1
     ): Call<GetFilmResponse>
 
     // TV
 
-    @GET(API.SEARCH_TV)
+    @GET(ApiConst.SEARCH_TV)
     fun searchTV(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1,
-        @Query(API.QUERY) query: String = ""
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1,
+        @Query(ApiConst.QUERY) query: String = ""
     ): Call<GetTVResponse>
 
-    @GET(API.TV_PLAYNOW)
+    @GET(ApiConst.TV_PLAYNOW)
     fun getTVPlayNow(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1
     ): Call<GetTVResponse>
 
-    @GET(API.TV)
+    @GET(ApiConst.TV)
     fun getTV(
-        @Query(API.API_KEY) api_key: String = API.KEY,
-        @Query(API.LANGUAGE) language: String = API.LANGUAGE_EN_US,
-        @Query(API.PAGE) page: Int = 1
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US,
+        @Query(ApiConst.PAGE) page: Int = 1
     ): Call<GetTVResponse>
+
+    // Trailer
+
+    @GET(ApiConst.TV_VIDEO)
+    fun getTvTrailer(
+        @Path("id") id: Long = 0,
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US
+    ): Call<GetTrailerResponse>
+    @GET(ApiConst.MOVIE_VIDEO)
+    fun getFilmTrailer(
+        @Path("id") id: Long = 0,
+        @Query(ApiConst.API_KEY) api_key: String = ApiConst.KEY,
+        @Query(ApiConst.LANGUAGE) language: String = ApiConst.LANGUAGE_EN_US
+    ): Call<GetTrailerResponse>
 }

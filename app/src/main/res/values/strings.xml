@@ -9,11 +9,22 @@
     <string name="rekomendasi">Recommendation</string>
     <string name="tolong_tunggu">Please wait</string>
     <string name="menampilkan_data">Showing data</string>
+    <string name="menampilkan_trailer">Showing trailer</string>
     <string name="cari_film">Search any film</string>
     <string name="search_tv">Search any movie tv</string>
     <string name="data_tidak_ditemukan">Data not found!</string>
     <string name="film">Film</string>
     <string name="tv_show">Tv Show</string>
     <string name="favorite">Favorite</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="rating">Rating</string>
+    <string name="tanggal_rilis">Release date :</string>
+    <string name="kepopuleran">Popularity :</string>
+    <string name="storyline">Storyline :</string>
+    <string name="trailer">Trailer</string>
+    <string name="bagikan">Share</string>
+    <string name="tambah_favorit">Add Favorite</string>
+    <string name="rating_float">Rating :</string>
 
 </resources>

@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FF/FindFilm/app/src/main/res/drawable/ic_share.xml" value="0.26615384615384613" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.16331994645247658" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/activity_detail.xml" value="0.264" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/content_scrolling.xml" value="0.24010416666666667" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/detail_activity_content.xml" value="0.264" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/list_item_film.xml" value="0.25416666666666665" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/layout/list_item_trailer.xml" value="0.25416666666666665" />
+        <entry key="..\:/FF/FindFilm/app/src/main/res/menu/menu_detail.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/drawable/bg_cari.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/bg_rounded.xml" value="0.1828125" />
         <entry key="app/src/main/res/drawable/bottom_nav_color.xml" value="0.1828125" />
@@ -32,7 +41,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

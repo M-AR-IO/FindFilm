@@ -7,6 +7,7 @@ import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
 import io.realm.annotations.RealmField
 import io.realm.annotations.Required
+import java.io.Serializable
 
 open class Film(
     @SerializedName("id") @PrimaryKey open var id: Long = 0,
@@ -17,4 +18,4 @@ open class Film(
     @SerializedName("vote_average") open var rating: Float = 0f,
     @SerializedName("release_date") @Required open var release_date: String = "",
     @SerializedName("popularity") open var popularity: Float = 0f
-) : RealmObject()
+) : RealmObject(), Serializable

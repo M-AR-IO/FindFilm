@@ -54,4 +54,6 @@ class RealmHelper(context: Context) {
         television.deleteFromRealm()
         realm.commitTransaction()
     }
+    fun isFilmFav(film: Film): Boolean = realm.where(Film::class.java).equalTo("id",film.id).findFirst()?.isValid ?: false
+    fun isTvFav(television: Television): Boolean = realm.where(Television::class.java).equalTo("id",television.id).findFirst()?.isValid ?: false
 }
