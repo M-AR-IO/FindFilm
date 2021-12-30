@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/bg_cari.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/bg_rounded.xml" value="0.1828125" />
         <entry key="app/src/main/res/drawable/bottom_nav_color.xml" value="0.1828125" />
+        <entry key="app/src/main/res/drawable/ic_favorit.xml" value="0.1828125" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_image.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.18385416666666668" />
@@ -15,6 +16,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_favorit.xml" value="0.1480978260869565" />
+        <entry key="app/src/main/res/layout/fragment_favorit_tab.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.210595160235448" />
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/list_item_film.xml" value="0.33" />

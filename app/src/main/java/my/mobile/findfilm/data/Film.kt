@@ -1,14 +1,20 @@
 package my.mobile.findfilm.data
 
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmModel
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.RealmClass
+import io.realm.annotations.RealmField
+import io.realm.annotations.Required
 
-data class Film(
-    @SerializedName("id") val id: Long,
-    @SerializedName("title") val title: String,
-    @SerializedName("overview") val overview: String,
-    @SerializedName("poster_path") val poster_path: String,
-    @SerializedName("backdrop_path") val backdrop_path: String,
-    @SerializedName("vote_average") val rating: Float,
-    @SerializedName("release_date") val release_date: String,
-    @SerializedName("popularity") val popularity: Float
-)
+open class Film(
+    @SerializedName("id") @PrimaryKey open var id: Long = 0,
+    @SerializedName("title") @Required open var title: String = "",
+    @SerializedName("overview") @Required open var overview: String = "",
+    @SerializedName("poster_path") @Required open var poster_path: String = "",
+    @SerializedName("backdrop_path") open var backdrop_path: String = "",
+    @SerializedName("vote_average") open var rating: Float = 0f,
+    @SerializedName("release_date") @Required open var release_date: String = "",
+    @SerializedName("popularity") open var popularity: Float = 0f
+) : RealmObject()

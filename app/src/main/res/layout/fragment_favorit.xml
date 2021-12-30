@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.favorit.FavoritFragment">
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabFavorit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            app:tabIndicatorColor="?attr/colorAccent"
+            app:tabIndicatorHeight="5dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/flatwhite"
+            app:layout_constraintTop_toTopOf="parent"
+    />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpFavorit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabFavorit"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,11 @@
     <item
             android:id="@+id/navigation_tv"
             android:icon="@drawable/ic_tv"
-            android:title="@string/title_tv"/>
+            android:title="@string/tv_show"/>
 
     <item
-            android:id="@+id/navigation_notifications"
-            android:icon="@drawable/ic_notifications_24dp"
-            android:title="@string/title_notifications"/>
+            android:id="@+id/navigation_favorit"
+            android:icon="@drawable/ic_favorit"
+            android:title="@string/favorite"/>
 
 </menu>
