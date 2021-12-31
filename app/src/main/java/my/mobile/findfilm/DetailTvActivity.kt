@@ -263,7 +263,6 @@ class DetailTvActivity : AppCompatActivity() {
                 alphaZeroOnCollapsed: Float,
                 alphaZeroOnExpanded: Float
             ) {
-                binding.cardViewPhoto.x = binding.cardViewPhoto.x
                 binding.cardViewPhoto.alpha = alphaZeroOnCollapsed
                 binding.root.background?.alpha = argbZeroOnExpanded
                 if (collapsed){

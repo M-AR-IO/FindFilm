@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap"
+            app:layout_scrollFlags="scroll|snap|enterAlways|exitUntilCollapsed"
             app:expandedTitleGravity="top"
             app:toolbarId="@+id/toolbar">
             <androidx.appcompat.widget.AppCompatImageView
@@ -51,17 +51,14 @@
         android:id="@+id/card_view_photo"
         android:layout_width="90dp"
         android:layout_height="150dp"
-        app:finalXPosition="@dimen/fab_margin"
-        app:finalYPosition="?attr/actionBarSize"
         android:layout_marginStart="@dimen/fab_margin"
         android:gravity="center"
         app:cardBackgroundColor="?attr/colorPrimary"
         app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
+        app:layout_behavior=".behavior.CoverBehavior"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|start"
-        app:onlyVerticalMove="true"
-        app:layout_behavior=".behavior.CoverBehavior">
+        app:layout_anchorGravity="bottom">
 
         <ImageView
             android:id="@+id/imgPhoto"
@@ -270,15 +267,15 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
                 android:text="@string/trailer"
-                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTrailer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/list_item_trailer"/>
 
         </LinearLayout>
 

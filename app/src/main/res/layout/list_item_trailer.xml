@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/btnTrailer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:background="#67000000"
         android:text="@string/app_name"
         android:textAllCaps="false"

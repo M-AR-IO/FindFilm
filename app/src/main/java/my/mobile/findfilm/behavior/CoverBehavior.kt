@@ -21,8 +21,8 @@ import android.R.attr.dependency
 
 class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Behavior<CardView>() {
     // calculated from given layout
-    private var startXPositionImage = 0
-    private var startYPositionImage = 0
+//    private var startXPositionImage = 0
+//    private var startYPositionImage = 0
     private var startHeight = 0
     private var startWidth = 0
     private var startToolbarHeight = 0
@@ -32,26 +32,25 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
     private var amountOfToolbarToMove = 0f
     private var amountOfImageToReduceHeight = 0f
     private var amountOfImageToReduceWidth = 0f
-    private var amountToMoveXPosition = 0f
-    private var amountToMoveYPosition = 0f
+//    private var amountToMoveXPosition = 0f
+//    private var amountToMoveYPosition = 0f
 
     // user configured params
     private var finalToolbarHeight = 0f  // user configured params
-    private var finalXPosition = 0f  // user configured params
-    private var finalYPosition = 0f  // user configured params
+//    private var finalXPosition = 0f  // user configured params
+//    private var finalYPosition = 0f  // user configured params
     private var finalHeight = 0f
     private var finalWidth = 0f
-    private var onlyVerticalMove = false
+//    private var onlyVerticalMove = false
 
     init {
         val a: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.CoverImageBehavior)
-        finalXPosition = a.getDimension(R.styleable.CoverImageBehavior_finalXPosition, 0f)
-        finalYPosition = a.getDimension(R.styleable.CoverImageBehavior_finalYPosition, 0f)
+//        finalXPosition = a.getDimension(R.styleable.CoverImageBehavior_finalXPosition, 0f)
+//        finalYPosition = a.getDimension(R.styleable.CoverImageBehavior_finalYPosition, 0f)
         finalHeight = a.getDimension(R.styleable.CoverImageBehavior_finalHeight, 0f)
         finalWidth = a.getDimension(R.styleable.CoverImageBehavior_finalWidth, 0f)
-        finalToolbarHeight =
-            a.getDimension(R.styleable.CoverImageBehavior_finalToolbarHeight, 0f)
-        onlyVerticalMove = a.getBoolean(R.styleable.CoverImageBehavior_onlyVerticalMove, false)
+        finalToolbarHeight = a.getDimension(R.styleable.CoverImageBehavior_finalToolbarHeight, 0f)
+//        onlyVerticalMove = a.getBoolean(R.styleable.CoverImageBehavior_onlyVerticalMove, false)
         a.recycle()
     }
 
@@ -73,15 +72,13 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
         // calculate progress of movement of dependency
 
         // calculate progress of movement of dependency
-        var currentToolbarHeight: Float =
-            startToolbarHeight + dependency.y // current expanded height of toolbar
+        var currentToolbarHeight: Float = startToolbarHeight + dependency.y // current expanded height of toolbar
 
         // don't go below configured min height for calculations (it does go passed the toolbar)
         // don't go below configured min height for calculations (it does go passed the toolbar)
         currentToolbarHeight = Math.max(currentToolbarHeight, finalToolbarHeight)
         val amountAlreadyMoved = startToolbarHeight - currentToolbarHeight
-        val progress =
-            100 * amountAlreadyMoved / amountOfToolbarToMove // how much % of expand we reached
+        val progress = 100 * amountAlreadyMoved / amountOfToolbarToMove // how much % of expand we reached
 
 
         // update image size
@@ -98,15 +95,15 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
 
         // update image position
 //        val distanceXToSubtract = progress * amountToMoveXPosition / 100
-        val distanceYToSubtract = progress * amountToMoveYPosition / 100
+//        val distanceYToSubtract = progress * amountToMoveYPosition / 100
 //        val newXPosition = startXPositionImage - distanceXToSubtract
         //newXPosition = newXPosition < endXPosition ? endXPosition : newXPosition; // don't go passed end position
         //newXPosition = newXPosition < endXPosition ? endXPosition : newXPosition; // don't go passed end position
 //        if (!onlyVerticalMove) {
 //            child.x = newXPosition
 //        }
-        child.x = child.x
-        child.y = startYPositionImage - distanceYToSubtract
+//        child.x = child.x
+//        child.y = startYPositionImage - distanceYToSubtract
 
         return true
     }
@@ -119,14 +116,14 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
             startHeight = child.height
             startWidth = child.width
 //            startXPositionImage = child.x.toInt()
-            startYPositionImage = child.y.toInt()
+//            startYPositionImage = child.y.toInt()
             startToolbarHeight = dependency.height
             // some calculated fields
             amountOfToolbarToMove = startToolbarHeight - finalToolbarHeight
             amountOfImageToReduceHeight = startHeight - finalHeight
             amountOfImageToReduceWidth = startWidth - finalWidth
 //            amountToMoveXPosition = startXPositionImage - finalXPosition
-            amountToMoveYPosition = startYPositionImage - finalYPosition
+//            amountToMoveYPosition = startYPositionImage - finalYPosition
             initialised = true
         }
     }
