@@ -6,6 +6,7 @@ import io.realm.Realm
 import io.realm.RealmResults
 import my.mobile.findfilm.data.Film
 import my.mobile.findfilm.data.Television
+import my.mobile.findfilm.data.model.User
 
 class RealmHelper(context: Context) {
     private val realm: Realm
@@ -15,6 +16,28 @@ class RealmHelper(context: Context) {
     init {
         Realm.init(context)
         realm = Realm.getDefaultInstance()
+    }
+
+    fun register(user: User){
+        realm.beginTransaction()
+        realm.copyToRealm(user)
+        realm.commitTransaction()
+    }
+    fun isRegistred(user: User,): Boolean{
+        val userRegistered = realm.where(User::class.java).equalTo(User::userId.name,user.userId).findFirst()
+        return userRegistered?.isValid ?: false
+    }
+    fun isRegistred(username: String, password: String): Boolean{
+        val userRegistered = realm.where(User::class.java).equalTo(User::username.name,username).equalTo(User::password.name,password).findFirst()
+        return userRegistered?.isValid ?: false
+    }
+    fun isRegistred(username: String): Boolean{
+        val userRegistered = realm.where(User::class.java).equalTo(User::username.name,username).findFirst()
+        return userRegistered?.isValid ?: false
+    }
+    fun getUser(username: String, password: String): User? {
+        return realm.where(User::class.java).equalTo(User::username.name, username)
+            .equalTo(User::password.name, password).findFirst()
     }
 
     fun getAllFilmFav(): List<Film>{

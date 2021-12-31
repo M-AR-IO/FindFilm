@@ -1,6 +1,7 @@
 package my.mobile.findfilm
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import my.mobile.findfilm.databinding.ActivityMainBinding
+import my.mobile.findfilm.ui.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val intent = Intent(applicationContext,LoginActivity::class.java)
+        startActivity(intent)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -42,6 +47,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val username = getIntent().getStringExtra("username")?: "Human"
+
+        binding.toolbar.title = "Hello, " + username
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
