@@ -62,7 +62,6 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
     ): Boolean {
         return dependency is AppBarLayout
     }
-    on
 
     override fun onDependentViewChanged(
         parent: CoordinatorLayout,
