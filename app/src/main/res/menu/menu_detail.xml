@@ -3,9 +3,11 @@
     <item
         android:id="@+id/action_share"
         android:title="@string/bagikan"
+        android:icon="@drawable/ic_share"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_favorit"
         android:title="@string/tambah_favorit"
+        android:icon="@drawable/ic_favorit_border"
         app:showAsAction="never"/>
 </menu>

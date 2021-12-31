@@ -22,9 +22,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Theme.FindFilm.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.FindFilm.AppBarOverlay" parent="Theme.AppCompat.NoActionBar" />
 
-    <style name="Theme.FindFilm.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.FindFilm.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
     <style name="BottomNavigation" parent="">
         <item name="itemIconTint">@color/flatwhite</item>

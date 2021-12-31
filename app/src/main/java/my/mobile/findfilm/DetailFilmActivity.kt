@@ -3,30 +3,20 @@ package my.mobile.findfilm
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.text.BoringLayout.make
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import my.mobile.findfilm.adapter.TrailerAdapter
 import my.mobile.findfilm.api.ApiConst
@@ -41,9 +31,9 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class DetailTvActivity : AppCompatActivity() {
+class DetailFilmActivity : AppCompatActivity() {
     companion object {
-        const val INTENT_EXTRA_NAME = "DetailTV"
+        const val INTENT_EXTRA_NAME = "DetailFilm"
     }
 
 
@@ -56,7 +46,7 @@ class DetailTvActivity : AppCompatActivity() {
 
     private lateinit var realm: RealmHelper
 
-    private lateinit var tv: Television
+    private lateinit var film: Film
     private val trailers: MutableList<Trailer> = mutableListOf()
     private lateinit var adapterTrailer: TrailerAdapter
     private var filmURL: String = ""
@@ -71,6 +61,7 @@ class DetailTvActivity : AppCompatActivity() {
         setupAppBar()
 
         setSupportActionBar(binding.toolbar)
+        binding.toolbarLayout.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         progressDialog = ProgressDialog(this)
@@ -83,16 +74,16 @@ class DetailTvActivity : AppCompatActivity() {
         adapterTrailer = TrailerAdapter(this,trailers)
         binding.rvTrailer.adapter = adapterTrailer
 
-        tv = intent.getSerializableExtra(INTENT_EXTRA_NAME) as Television
+        film = intent.getSerializableExtra(INTENT_EXTRA_NAME) as Film
 
-        tv.apply {
+        film.apply {
             filmURL = ApiConst.URLFILM + "" + this.id
 
-            title = this.name
-            binding.toolbar.title = this.name
+            title = this.title
+            binding.toolbar.title = this.title
             binding.name.text = this.originalName
-            binding.rating.text = (this.vote_average.toString() + "/10")
-            val date = this.realise_date.let {
+            binding.rating.text = (this.rating.toString() + "/10")
+            val date = this.release_date.let {
                 var hasil = "Unknown"
                 val regex = """[0-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]""".toRegex()
                 if (regex.matches(it)){
@@ -109,13 +100,13 @@ class DetailTvActivity : AppCompatActivity() {
 
             binding.ratingBar.numStars = 5
             binding.ratingBar.stepSize = 0.5f
-            binding.ratingBar.rating = this.vote_average / 2
+            binding.ratingBar.rating = this.rating / 2
 
-            Glide.with(this@DetailTvActivity)
+            Glide.with(this@DetailFilmActivity)
                 .load(ApiConst.URLIMAGE + this.backdrop_path)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.imgCover)
-            Glide.with(this@DetailTvActivity)
+            Glide.with(this@DetailFilmActivity)
                 .load(ApiConst.URLIMAGE + this.backdrop_path)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(object : SimpleTarget<Drawable>() {
@@ -127,20 +118,19 @@ class DetailTvActivity : AppCompatActivity() {
                     }
 
                 })
-            Glide.with(this@DetailTvActivity)
+            Glide.with(this@DetailFilmActivity)
                 .load(ApiConst.URLIMAGE + this.poster_path)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.imgPhoto)
 
             binding.rvTrailer.setHasFixedSize(true)
-            binding.rvTrailer.layoutManager = LinearLayoutManager(this@DetailTvActivity)
+            binding.rvTrailer.layoutManager = LinearLayoutManager(this@DetailFilmActivity)
 
-            setFav(this@DetailTvActivity.realm.isTvFav(this))
+            setFav(this@DetailFilmActivity.realm.isFilmFav(film))
 
             getTrailer()
 
         }
-
 
         binding.fav.setOnClickListener {
             favClick()
@@ -163,14 +153,13 @@ class DetailTvActivity : AppCompatActivity() {
             menuItemFav?.title = "Add favorite"
         }
     }
-
     private fun favClick() {
-        val isFav = realm.isTvFav(tv)
+        val isFav = realm.isFilmFav(film)
         if (isFav){
-            realm.deleteTvFav(tv)
+            realm.deleteFilmFav(film)
             Toast.makeText(applicationContext, "Removed to favorite", Toast.LENGTH_SHORT).show()
         } else {
-            realm.addTvFav(tv)
+            realm.addFilmFav(film)
             Toast.makeText(applicationContext, "Added to favorite", Toast.LENGTH_SHORT).show()
         }
         setFav(!isFav)
@@ -179,8 +168,8 @@ class DetailTvActivity : AppCompatActivity() {
     private fun shareClick() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        val subject = tv.originalName
-        val desc = tv.overview
+        val subject = film.originalName
+        val desc = film.overview
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
         intent.putExtra(Intent.EXTRA_TEXT, subject + "\n\n" + desc + "\n\n" + filmURL)
         startActivity(Intent.createChooser(intent, "Share with :"))
@@ -190,8 +179,8 @@ class DetailTvActivity : AppCompatActivity() {
     private fun getTrailer(){
         progressDialog.show()
 
-        Repository.getTvTrailer(
-            tv.id,
+        Repository.getFilmTrailer(
+            film.id,
             onSuccess = {
                 progressDialog.dismiss()
                 trailers.clear()
@@ -201,7 +190,7 @@ class DetailTvActivity : AppCompatActivity() {
                 }
             },
             onError = {
-                Toast.makeText(this,"Failed to load trailers!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Failed to load trailers!", Toast.LENGTH_SHORT).show()
             }
         )
     }
@@ -215,11 +204,12 @@ class DetailTvActivity : AppCompatActivity() {
 
         if (menu is Menu) menuItemFav = menu.findItem(R.id.action_favorit)!!
 
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onMenuOpened(featureId: Int, menu: Menu): Boolean {
-        if (realm.isTvFav(tv)){
+        if (realm.isFilmFav(film)){
             menuItemFav?.icon = resources.getDrawable(R.drawable.ic_favorit)
             menuItemFav?.title = "Remove favorite"
         } else {
@@ -263,7 +253,6 @@ class DetailTvActivity : AppCompatActivity() {
                 alphaZeroOnCollapsed: Float,
                 alphaZeroOnExpanded: Float
             ) {
-                binding.cardViewPhoto.x = binding.cardViewPhoto.x
                 binding.cardViewPhoto.alpha = alphaZeroOnCollapsed
                 binding.root.background?.alpha = argbZeroOnExpanded
                 if (collapsed){

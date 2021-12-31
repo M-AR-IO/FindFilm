@@ -62,6 +62,7 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
     ): Boolean {
         return dependency is AppBarLayout
     }
+    on
 
     override fun onDependentViewChanged(
         parent: CoordinatorLayout,
@@ -74,7 +75,7 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
 
         // calculate progress of movement of dependency
         var currentToolbarHeight: Float =
-            startToolbarHeight + dependency.getY() // current expanded height of toolbar
+            startToolbarHeight + dependency.y // current expanded height of toolbar
 
         // don't go below configured min height for calculations (it does go passed the toolbar)
         // don't go below configured min height for calculations (it does go passed the toolbar)
@@ -97,14 +98,15 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
         // update image position
 
         // update image position
-        val distanceXToSubtract = progress * amountToMoveXPosition / 100
+//        val distanceXToSubtract = progress * amountToMoveXPosition / 100
         val distanceYToSubtract = progress * amountToMoveYPosition / 100
-        val newXPosition = startXPositionImage - distanceXToSubtract
+//        val newXPosition = startXPositionImage - distanceXToSubtract
         //newXPosition = newXPosition < endXPosition ? endXPosition : newXPosition; // don't go passed end position
         //newXPosition = newXPosition < endXPosition ? endXPosition : newXPosition; // don't go passed end position
-        if (!onlyVerticalMove) {
+//        if (!onlyVerticalMove) {
 //            child.x = newXPosition
-        }
+//        }
+        child.x = child.x
         child.y = startYPositionImage - distanceYToSubtract
 
         return true
@@ -117,14 +119,14 @@ class CoverBehavior(context: Context,attrs: AttributeSet): CoordinatorLayout.Beh
             // form initial layout
             startHeight = child.height
             startWidth = child.width
-            startXPositionImage = child.x.toInt()
+//            startXPositionImage = child.x.toInt()
             startYPositionImage = child.y.toInt()
             startToolbarHeight = dependency.height
             // some calculated fields
             amountOfToolbarToMove = startToolbarHeight - finalToolbarHeight
             amountOfImageToReduceHeight = startHeight - finalHeight
             amountOfImageToReduceWidth = startWidth - finalWidth
-            amountToMoveXPosition = startXPositionImage - finalXPosition
+//            amountToMoveXPosition = startXPositionImage - finalXPosition
             amountToMoveYPosition = startYPositionImage - finalYPosition
             initialised = true
         }

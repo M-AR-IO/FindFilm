@@ -60,7 +60,7 @@ class TvFavoritFragment : Fragment(), TvAdapter.OnSelectData {
     }
 
     override fun onSelect(tv: Television) {
-        val intent = Intent(context, DetailTvActivity::class.java)
+        val intent = Intent(activity, DetailTvActivity::class.java)
         intent.putExtra(DetailTvActivity.INTENT_EXTRA_NAME,tv)
         startActivity(intent)
     }

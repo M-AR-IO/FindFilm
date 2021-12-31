@@ -1,6 +1,7 @@
 package my.mobile.findfilm.realm
 
 import android.content.Context
+import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.RealmResults
 import my.mobile.findfilm.data.Film
@@ -20,8 +21,12 @@ class RealmHelper(context: Context) {
         val data = mutableListOf<Film>()
         films = realm.where(Film::class.java).findAll()
 
-        films.forEach{
-            data.add(it)
+        films.forEach{ film ->
+            film?.apply {
+                val filmDetach = realm.copyFromRealm(this)
+                val json = Gson().toJson(filmDetach)
+                data.add(Gson().fromJson(json,Film::class.java))
+            }
         }
         return data
     }
@@ -29,32 +34,36 @@ class RealmHelper(context: Context) {
         val data = mutableListOf<Television>()
         tvs = realm.where(Television::class.java).findAll()
 
-        tvs.forEach{
-            data.add(it)
+        tvs.forEach{ tv ->
+            tv?.apply {
+                val tvDetach = realm.copyFromRealm(this)
+                val json = Gson().toJson(tvDetach)
+                data.add(Gson().fromJson(json,Television::class.java))
+            }
         }
         return data
     }
     fun addFilmFav(film: Film){
-        realm.executeTransaction {
-            it.copyToRealmOrUpdate(film)
-        }
+        realm.beginTransaction()
+        realm.copyToRealmOrUpdate(film)
+        realm.commitTransaction()
     }
     fun addTvFav(television: Television){
-        realm.executeTransaction {
-            it.copyToRealmOrUpdate(television)
-        }
+        realm.beginTransaction()
+        realm.copyToRealmOrUpdate(television)
+        realm.commitTransaction()
     }
     fun deleteFilmFav(film: Film){
         val flm: Film? = realm.where(Film::class.java).equalTo(Film::id.name,film.id).findFirst()
-        realm.executeTransaction {
-            flm?.deleteFromRealm()
-        }
+        realm.beginTransaction()
+        flm?.deleteFromRealm()
+        realm.commitTransaction()
     }
     fun deleteTvFav(television: Television){
         val tv: Television? = realm.where(Television::class.java).equalTo(Television::id.name,television.id).findFirst()
-        realm.executeTransaction {
-            tv?.deleteFromRealm()
-        }
+        realm.beginTransaction()
+        tv?.deleteFromRealm()
+        realm.commitTransaction()
     }
     fun isFilmFav(film: Film): Boolean = realm.where(Film::class.java).equalTo(Film::id.name,film.id).findFirst()?.isValid ?: false
     fun isTvFav(television: Television): Boolean = realm.where(Television::class.java).equalTo(Television::id.name,television.id).findFirst()?.isValid ?: false

@@ -1,12 +1,14 @@
 package my.mobile.findfilm.ui.favorit.tab
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import my.mobile.findfilm.DetailFilmActivity
 import my.mobile.findfilm.adapter.FilmAdapter
 import my.mobile.findfilm.data.Film
 import my.mobile.findfilm.databinding.FragmentFavoritTabBinding
@@ -58,7 +60,9 @@ class FilmFavoritFragment : Fragment(), FilmAdapter.OnSelectData {
     }
 
     override fun onSelect(film: Film) {
-        // buka film
+        val intent = Intent(activity, DetailFilmActivity::class.java)
+        intent.putExtra(DetailFilmActivity.INTENT_EXTRA_NAME,film)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

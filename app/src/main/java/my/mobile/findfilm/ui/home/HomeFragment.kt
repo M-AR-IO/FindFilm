@@ -2,6 +2,7 @@ package my.mobile.findfilm.ui.home
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ramotion.cardslider.CardSliderLayoutManager
 import com.ramotion.cardslider.CardSnapHelper
+import my.mobile.findfilm.DetailFilmActivity
 import my.mobile.findfilm.R
 import my.mobile.findfilm.adapter.FilmAdapter
 import my.mobile.findfilm.adapter.FilmHorizontalAdapter
@@ -147,6 +149,8 @@ class HomeFragment : Fragment(), FilmAdapter.OnSelectData, FilmHorizontalAdapter
     }
 
     override fun onSelect(film: Film) {
-        // Buka Film
+        val intent = Intent(context, DetailFilmActivity::class.java)
+        intent.putExtra(DetailFilmActivity.INTENT_EXTRA_NAME,film)
+        startActivity(intent)
     }
 }
