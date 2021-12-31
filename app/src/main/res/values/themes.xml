@@ -30,4 +30,7 @@
         <item name="itemIconTint">@color/flatwhite</item>
         <item name="iconTint">@color/white</item>
     </style>
+    <style name="ImageView.RoundedCorner" parent="">
+        <item name="cornerSize">5dp</item>
+    </style>
 </resources>

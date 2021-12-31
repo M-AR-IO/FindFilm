@@ -56,9 +56,17 @@ class FilmAdapter(
         val film = items[position]
 
         holder.tvTitle.text = film.title
-        val date = LocalDate.parse(film.release_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        val unix = date.atStartOfDay(ZoneId.systemDefault())
-        holder.tvRealiseDate.text = unix.format(DateTimeFormatter.ofPattern("d MMMM yyyy"))
+        val date = film.release_date.let {
+            var hasil = "Unknown"
+            val regex = """[0-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]""".toRegex()
+            if (regex.matches(it)){
+                val dateTime = LocalDate.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                val unix = dateTime.atStartOfDay(ZoneId.systemDefault())
+                hasil = unix.format(DateTimeFormatter.ofPattern("d MMMM yyyy"))
+            }
+            hasil
+        }
+        holder.tvRealiseDate.text = date
         holder.tvDeskripsi.text = film.overview
         holder.ratingbar.let {
             it.numStars = 5

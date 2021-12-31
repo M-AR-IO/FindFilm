@@ -89,9 +89,17 @@ class DetailTvActivity : AppCompatActivity() {
             title = tv.name
             binding.name.text = tv.originalName
             binding.rating.text = (tv.vote_average.toString() + "/10")
-            val date = LocalDate.parse(tv.realise_date, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            val unix = date.atStartOfDay(ZoneId.systemDefault())
-            binding.release.text = unix.format(DateTimeFormatter.ofPattern("d MMMM yyyy"))
+            val date = tv.realise_date.let {
+                var hasil = "Unknown"
+                val regex = """[0-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]""".toRegex()
+                if (regex.matches(it)){
+                    val dateTime = LocalDate.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    val unix = dateTime.atStartOfDay(ZoneId.systemDefault())
+                    hasil = unix.format(DateTimeFormatter.ofPattern("d MMMM yyyy"))
+                }
+                hasil
+            }
+            binding.release.text = date
             binding.popularity.text = tv.popularity.toString()
             binding.overview.text = tv.overview
             binding.name.isSelected = true
@@ -140,9 +148,11 @@ class DetailTvActivity : AppCompatActivity() {
     private fun favClick() {
         if (realm.isTvFav(tv)) {
             realm.deleteTvFav(tv)
+            binding.fav.setImageResource(R.drawable.ic_favorit_border)
             Toast.makeText(applicationContext, "Removed to favorite", Toast.LENGTH_SHORT).show()
         } else {
             realm.addTvFav(tv)
+            binding.fav.setImageResource(R.drawable.ic_favorit)
             Toast.makeText(applicationContext, "Added to favorite", Toast.LENGTH_SHORT).show()
         }
     }

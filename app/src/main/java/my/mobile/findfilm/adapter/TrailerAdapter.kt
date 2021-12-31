@@ -12,6 +12,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import my.mobile.findfilm.R
 import my.mobile.findfilm.data.Trailer
 import kotlin.contracts.contract
@@ -22,8 +23,10 @@ class TrailerAdapter(
 ): RecyclerView.Adapter<TrailerAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val btn: Button
+        val bgImg: ImageView
         init {
             btn = view.findViewById(R.id.btnTrailer)
+            bgImg = view.findViewById(R.id.bg)
         }
     }
 
@@ -41,6 +44,9 @@ class TrailerAdapter(
             intent.data = Uri.parse("https://www.youtube.com/watch?v=" + trailer.key)
             context.startActivity(intent)
         }
+        Glide.with(context)
+            .load("https://i.ytimg.com/vi/" + trailer.key + "/hqdefault.jpg")
+            .into(holder.bgImg)
     }
 
     override fun getItemCount() = items.size

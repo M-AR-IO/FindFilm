@@ -35,25 +35,27 @@ class RealmHelper(context: Context) {
         return data
     }
     fun addFilmFav(film: Film){
-        realm.beginTransaction()
-        realm.copyToRealm(film)
-        realm.commitTransaction()
+        realm.executeTransaction {
+            it.copyToRealmOrUpdate(film)
+        }
     }
     fun addTvFav(television: Television){
-        realm.beginTransaction()
-        realm.copyToRealm(television)
-        realm.commitTransaction()
+        realm.executeTransaction {
+            it.copyToRealmOrUpdate(television)
+        }
     }
     fun deleteFilmFav(film: Film){
-        realm.beginTransaction()
-        film.deleteFromRealm()
-        realm.commitTransaction()
+        val flm: Film? = realm.where(Film::class.java).equalTo(Film::id.name,film.id).findFirst()
+        realm.executeTransaction {
+            flm?.deleteFromRealm()
+        }
     }
     fun deleteTvFav(television: Television){
-        realm.beginTransaction()
-        television.deleteFromRealm()
-        realm.commitTransaction()
+        val tv: Television? = realm.where(Television::class.java).equalTo(Television::id.name,television.id).findFirst()
+        realm.executeTransaction {
+            tv?.deleteFromRealm()
+        }
     }
-    fun isFilmFav(film: Film): Boolean = realm.where(Film::class.java).equalTo("id",film.id).findFirst()?.isValid ?: false
-    fun isTvFav(television: Television): Boolean = realm.where(Television::class.java).equalTo("id",television.id).findFirst()?.isValid ?: false
+    fun isFilmFav(film: Film): Boolean = realm.where(Film::class.java).equalTo(Film::id.name,film.id).findFirst()?.isValid ?: false
+    fun isTvFav(television: Television): Boolean = realm.where(Television::class.java).equalTo(Television::id.name,television.id).findFirst()?.isValid ?: false
 }
